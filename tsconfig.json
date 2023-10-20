@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "noEmit": true,
+    "declaration": true,
+    "outDir": "dist",
+    "verbatimModuleSyntax": true
+  },
+  "exclude": ["docs", "dist"]
+}

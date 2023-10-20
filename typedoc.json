@@ -1,0 +1,58 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "categorizeByGroup": false,
+  "categoryOrder": ["Parse", "Predicates", "Core Types", "Advanced"],
+  "cleanOutputDir": true,
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+
+  "customCss": "./public/custom.css",
+  "entryPointStrategy": "expand",
+  "entryPoints": ["src/index.ts"],
+  "media": "./public",
+  "name": "typed-json",
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "out": "docs",
+  "plugin": ["typedoc-plugin-mdn-links", "@starbeam-dev/typedoc-theme"],
+  "requiredToBeDocumented": [
+    "Project",
+    "Module",
+    "Namespace",
+    "Enum",
+    "EnumMember",
+    "Variable",
+    "Function",
+    "Class",
+    "Interface",
+    "Constructor",
+    "Property",
+    "Method",
+    "CallSignature",
+    "IndexSignature",
+    "ConstructorSignature",
+    "Parameter",
+    "TypeLiteral",
+    "TypeParameter",
+    "Accessor",
+    "TypeAlias",
+    "Reference"
+  ],
+  "searchInComments": true,
+  "sourceLinkTemplate": "https://github.com/starbeamjs/typed-json/blob/main",
+  "theme": "@starbeam-dev",
+  "tsconfig": "./tsconfig.json",
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true,
+    "notExported": true
+  },
+  "visibilityFilters": {
+    "@advanced": true,
+    "@alpha": false,
+    "@beta": true
+  }
+}

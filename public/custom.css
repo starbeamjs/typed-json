@@ -1,0 +1,214 @@
+/* Custom */
+@import url("./style.css") layer(theme);
+@import url("./highlight.css") layer(theme-highlights);
+
+@layer theme, theme-highlights, local;
+
+@layer local {
+  :root {
+    --size-unit: 1.5rem;
+    --ratio: 1.5;
+    --size-sm: calc(var(--size-unit) / var(--ratio));
+    --size-xs: calc(var(--size-sm) / var(--ratio));
+    --size-2xs: calc(var(--size-xs) / var(--ratio));
+  }
+
+  /** override upstream */
+  :root {
+    --color-background: var(--color-blank);
+
+    --light-color-warning-text: #222;
+    --light-color-background-warning: #e6e600;
+    --light-color-accent: #c5c7c9;
+    --light-color-text: #222;
+    --light-color-text-aside: #6e6e6e;
+    --light-color-link: #1f70c2;
+  }
+
+  /** dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --lightness-scheme: -1;
+    }
+  }
+
+  @media not (prefers-color-scheme: dark) {
+    :root {
+      --lightness-scheme: 1;
+    }
+  }
+
+  :root {
+    --hue: 220;
+    --hue-purple: 328;
+    --hue-yellow: 109;
+    --hue-blue: 230;
+    --hue-red: 29;
+    --hue-green: 142;
+    --hue-teal: 190;
+  }
+
+  *,
+  ::before,
+  ::after,
+  ::marker {
+    /** 
+     * A scheme of 1 means the background is light; -1 means the background is
+     * dark.
+     *
+     * You can invert the scheme by setting `--lightness-flip` to `-1`.
+     */
+    --lightness-scheme: 1;
+
+    /**
+      * A flip of -1 inverts the colors
+      */
+
+    /**
+      * The base lightness is neutral (50%). In a dark scheme, the background
+      * colors are adjusted from the base towards 100%, while in a light
+      * scheme, the background colors are adjusted from the base towards
+      * 0%.
+      *
+      * Foreground colors work in the opposite direction.
+      */
+    --lightness-base: 50%;
+
+    --lightness-tobg-adjustment: calc(
+      5 * var(--lightness-scheme) * var(--lightness-flip, 1)
+    );
+    --lightness-tofg-adjustment: calc(var(--lightness-tobg-adjustment) * -1);
+    --lightness-bg: calc(
+      var(--lightness-base) + (var(--lightness-tobg-adjustment) * 7%)
+    );
+    --lightness-icon: calc(
+      var(--lightness-base) + (var(--lightness-tobg-adjustment) * 4%)
+    );
+    --lightness-border: calc(
+      var(--lightness-base) + (var(--lightness-tofg-adjustment) * 9%)
+    );
+    --lightness-inline-border: calc(
+      var(--lightness-base) + (var(--lightness-tofg-adjustment) * 4%)
+    );
+    --lightness-blank: calc(
+      var(--lightness-base) + (var(--lightness-tobg-adjustment) * 10%)
+    );
+    --chroma-normal: 20%;
+    --chroma-icon-intense: 50%;
+    --chroma-icon-subdued: 30%;
+
+    --color-blank: oklch(var(--lightness-blank) 0% var(--hue));
+
+    --color-bg-base: oklch(var(--lightness-bg) var(--chroma-normal) var(--hue));
+    --color-bg: var(--color-blank);
+    --color-bg-accent: oklch(from var(--color-bg-base) calc(l + 10) c h);
+
+    --color-inline-border: oklch(
+      var(--lightness-inline-border) var(--chroma-normal) var(--hue)
+    );
+
+    --icon-bg-intense: oklch(
+      var(--lightness-icon) var(--chroma-icon-intense) var(--hue)
+    );
+    --icon-bg-subdued: oklch(
+      from var(--icon-bg-intense) l var(--chroma-icon-intense) h
+    );
+
+    --color-text-base: oklch(
+      calc(var(--lightness-base) + (var(--lightness-tofg-adjustment) * 10%))
+        var(--chroma-icon-intense) var(--hue)
+    );
+
+    --color-icon-background: oklch(
+      from var(--icon-bg-intense) calc(l + 100) 0% h
+    );
+    --color-ts-project: oklch(
+      from var(--color-text-base) l c var(--hue-purple)
+    );
+    --color-ts-enum: oklch(from var(--color-text-base) l c var(--hue-yellow));
+    --color-ts-variable: oklch(from var(--color-text-base) l c var(--hue-blue));
+    --color-ts-function: oklch(
+      from var(--color-text-base) l c var(--hue-purple)
+    );
+    --color-ts-class: oklch(from var(--color-text-base) l c var(--hue-blue));
+    --color-ts-interface: oklch(
+      from var(--color-text-base) l c var(--hue-green)
+    );
+    --color-ts-type-alias: oklch(
+      from var(--color-text-base) l c var(--hue-red)
+    );
+
+    --color-text: oklch(
+      from var(--color-text-base) calc(l + var(--lightness-tobg-adjustment) * 5)
+        20% var(--hue-red)
+    );
+    --color-text-aside: oklch(
+      from var(--color-text-base) calc(l + var(--lightness-tobg-adjustment) * 5)
+        10% var(--hue-red)
+    );
+
+    --color-ts-method: var(--color-ts-function);
+    --color-ts-call-signature: var(--color-ts-method);
+    --color-ts-parameter: var(--color-ts-variable);
+  }
+
+  summary.tsd-accordion-summary {
+    display: flex;
+    align-items: center;
+
+    & h3 {
+      display: flex;
+      align-items: end;
+      column-gap: 0.5rem;
+    }
+  }
+
+  html:not(.filter-advanced) details[data-key="Advanced Usage"] {
+    display: none;
+  }
+
+  .tsd-nested-navigation {
+    margin-left: var(--size-unit);
+
+    & a {
+      display: flex;
+      align-items: bottom;
+    }
+  }
+
+  .tsd-description {
+    display: grid;
+
+    & > * {
+      margin: 0;
+    }
+  }
+
+  .tsd-signature {
+    --lightness-flip: -1;
+    background-color: var(--color-blank);
+  }
+
+  .tsd-comment code {
+    border: 1px solid var(--color-inline-border);
+    border-radius: var(--size-2xs);
+  }
+
+  .tsd-parameters-title {
+    display: none;
+  }
+
+  .tsd-parameter-list h5 {
+    font-family: monospace;
+  }
+
+  .tsd-returns-title {
+    display: flex;
+    align-items: baseline;
+    column-gap: calc(1ch / var(--ratio));
+  }
+
+  :is(a, span):is([class^="tsd-"], [class*=" tsd-"]) {
+    font-family: monospace;
+  }
+}

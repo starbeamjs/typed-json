@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fast-check/vitest": "^0.0.8",
+    "@typed-utils/json": "workspace:^",
+    "@vitest/ui": "^1.0.0-beta.2",
+    "fast-check": "^3.13.1",
+    "vitest": "^1.0.0-beta.2"
+  }
+}

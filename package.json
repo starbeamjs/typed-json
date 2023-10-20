@@ -1,0 +1,51 @@
+{
+  "name": "@typed-utils/json",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Utilities for working with JSON values in a typesafe way",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    "types": "./src/index.ts",
+    "default": "./src/index.ts"
+  },
+  "publishConfig": {
+    "exports": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "ci:lint": "eslint . --max-warnings 0",
+    "ci:specs": "dev-tests --run",
+    "ci:types": "dev-tests --run typecheck",
+    "prepare": "rollup -c",
+    "test:specs": "dev-tests",
+    "test:types": "dev-tests typecheck"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.38.0",
+    "@starbeam-dev/compile": "^1.0.1",
+    "@starbeam-dev/eslint-plugin": "file:.yalc/@starbeam-dev/eslint-plugin",
+    "@starbeam-dev/typedoc-theme": "file:.yalc/@starbeam-dev/typedoc-theme",
+    "@swc/helpers": "^0.5.3",
+    "dev-mode": "file:.yalc/dev-mode",
+    "eslint": "^8.51.0",
+    "prettier": "^3.0.3",
+    "rollup": "^4.1.4",
+    "typedoc": "^0.25.2",
+    "typedoc-plugin-mdn-links": "^3.1.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "typedoc": "0.25.2",
+        "vitest": "1"
+      }
+    }
+  }
+}
