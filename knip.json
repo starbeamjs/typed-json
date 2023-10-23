@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "entry": ["src/index.ts"],
+  "ignore": ["docs"],
+  "ignoreDependencies": [
+    "prettier",
+    "@swc/helpers",
+    "@microsoft/api-extractor"
+  ],
+  "ignoreWorkspaces": ["tests"],
+  "typedoc": {
+    "config": ["typedoc.json", "tsdoc.json"]
+  }
+}

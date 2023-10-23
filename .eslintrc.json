@@ -1,4 +1,5 @@
 {
   "root": true,
+  "ignorePatterns": ["docs"],
   "extends": ["plugin:@starbeam-dev/library:recommended"]
 }

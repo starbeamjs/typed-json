@@ -10,6 +10,7 @@
   "customCss": "./public/custom.css",
   "entryPointStrategy": "expand",
   "entryPoints": ["src/index.ts"],
+  "excludePrivate": true,
   "media": "./public",
   "name": "typed-json",
   "navigation": {
@@ -42,7 +43,6 @@
     "Reference"
   ],
   "searchInComments": true,
-  "sourceLinkTemplate": "https://github.com/starbeamjs/typed-json/blob/main",
   "theme": "@starbeam-dev",
   "tsconfig": "./tsconfig.json",
   "validation": {
@@ -51,7 +51,7 @@
     "notExported": true
   },
   "visibilityFilters": {
-    "@advanced": true,
+    "@advanced": false,
     "@alpha": false,
     "@beta": true
   }

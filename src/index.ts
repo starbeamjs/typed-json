@@ -15,7 +15,7 @@ export type JsonPrimitive = string | number | boolean | null;
 /**
  * @alpha
  * @advanced
- * @group readonly
+ * @category Readonly
  */
 export type ReadonlyJsonArray = readonly JsonValue[];
 
@@ -29,7 +29,7 @@ export type JsonArray = JsonValue[];
 /**
  * @alpha
  * @advanced
- * @group readonly
+ * @category Readonly
  */
 export type ReadonlyJsonObject = Readonly<Record<string, JsonValue>>;
 
@@ -49,6 +49,7 @@ export type JsonValue = JsonPrimitive | JsonArray | JsonObject;
 /**
  * @alpha
  * @advanced
+ * @category Readonly
  */
 export type ReadonlyJsonValue = JsonPrimitive | ReadonlyJsonArray | JsonValue;
 
@@ -80,11 +81,15 @@ export function isArray(value: JsonValue | undefined): value is JsonArray {
  *
  *
  * @remarks
- * - `String` for `string`
- * - `Boolean` for `boolean`
- * - `Number` for `number`
- * - `null`
+ * | Specified `type` | Narrowed Type |
+ * | ---------------- | ------------- |
+ * | `String` | `string` |
+ * | `Boolean` | `boolean` |
+ * | `Number` | `number` |
+ * | `null` | `null` |
  *
+ *
+ * @inline
  * @advanced
  * @category Advanced Usage
  */
@@ -93,6 +98,18 @@ export type PrimitiveClass =
   | typeof Boolean
   | typeof Number
   | null;
+
+export interface Hello {
+  primitive: PrimitiveClass;
+}
+
+export declare class World {
+  static primitive: PrimitiveClass;
+
+  constructor(primitive: PrimitiveClass);
+
+  toPrimitive(): PrimitiveClass;
+}
 
 /**
  * Get the {@link PrimitiveClass} for a given subtype of {@link JsonValue}.
@@ -130,21 +147,65 @@ export type PrimitiveFor<
   : never;
 
 /**
+ * {@label NARROW_TO_NEVER}
+ * @remarks
+ *
+ * Narrows {@linkcode JsonObject} and {@linkcode JsonArray} to `never`. While
+ * it probably doesn't make *typically* make sense to pass a value of a type
+ * that's not a {@linkcode JsonObject} or {@linkcode JsonArray}, this overload
+ * reflects the reality of the situation.
+ *
  * @category Predicates
+ * @param value A JSON value.
+ * @param primitiveType A {@link PrimitiveClass} or undefined.
  */
 export function isPrimitive(
   value: JsonObject | JsonArray,
-  type?: PrimitiveClass,
+  primitiveType?: PrimitiveClass,
 ): value is never;
+/**
+ * {@label NARROW}
+ *
+ * Narrows any {@linkcode JsonValue} to a specific type of primitive based upon
+ * the {@link PrimitiveClass} passed.
+ *
+ * | Specified `type` | Narrowed Type |
+ * | ---------------- | ------------- |
+ * | `String` | `string` |
+ * | `Boolean` | `boolean` |
+ * | `Number` | `number` |
+ * | `null` | `null` |
+ */
 export function isPrimitive<J extends PrimitiveClass | undefined = undefined>(
   value: JsonValue,
-  type?: J,
+  primitiveType: J,
 ): value is PrimitiveFor<J, JsonValue>;
-export function isPrimitive<
-  J extends JsonValue,
-  T extends PrimitiveClassFor<J>,
->(value: J | undefined, type?: T | undefined): boolean {
-  switch (type) {
+/**
+ * PRIMARY
+ *
+ * Determine whether `value` is a primitive value.
+ *
+ * @remarks
+ * You can pass `String`, `Boolean`, or `Number` as the
+ * {@link !isPrimitive:PRIMARY | `primitiveType`} parameter.
+ *
+ * The overloads to `isPrimitive` help you {@link !isPrimitive:NARROW | narrow}
+ * the type of a `value`. They also cause `isPrimitive` to
+ * {@link !isPrimitive:NARROW_TO_NEVER | narrow to `never`} if you pass a
+ * {@linkcode JsonObject} or {@linkcode JsonArray} to it.
+ *
+ * @label {PRIMARY}
+ * @primary
+ */
+export function isPrimitive(
+  value: JsonValue | undefined,
+  primitiveType?: PrimitiveClass | undefined,
+): value is JsonPrimitive;
+export function isPrimitive(
+  value: JsonValue | undefined,
+  primitiveType?: PrimitiveClass | undefined,
+): boolean {
+  switch (primitiveType) {
     case undefined:
       return (
         value === null ||

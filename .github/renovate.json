@@ -1,0 +1,71 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:js-lib",
+    ":gitSignOff",
+    "schedule:automergeDaily",
+    "schedule:daily"
+  ],
+  "timezone": "America/Los_Angeles",
+  "prHourlyLimit": 0,
+  "labels": ["dependencies"],
+  "assignees": ["wycats", "nullvoxpopuli"],
+  "rebaseWhen": "behind-base-branch",
+  "platformCommit": true,
+  "commitMessageTopic": "Dependency \"{{depName}}\"",
+  "minimumReleaseAge": "3 days",
+  "dependencyDashboardHeader": "",
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "commitMessageTopic": "Development Dependency \"{{depName}}\""
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "extends": ["packages:eslint"],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor", "major"],
+      "groupName": "Development Dependency TypeScript ESLint",
+      "groupSlug": "typescript-eslint-monorepo"
+    },
+
+    {
+      "matchPackagePrefixes": ["@starbeam-dev/"],
+      "schedule": ["at any time"],
+      "minimumReleaseAge": "3 days",
+      "commitMessageTopic": "Starbeam Dev",
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["typescript"],
+      "commitMessageTopic": "TypeScript Patch",
+      "automerge": true,
+      "platformAutomerge": true
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major", "minor"],
+      "labels": ["typescript"],
+      "commitMessageTopic": "TypeScript Minor or Major",
+      "dependencyDashboardApproval": true,
+      "automerge": false,
+      "platformAutomerge": false
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "matchDepTypes": ["peerDependencies"],
+      "labels": ["typescript"],
+      "commitMessageTopic": "Supported TypeScript Versions",
+      "dependencyDashboardApproval": true,
+      "automerge": false,
+      "platformAutomerge": false
+    }
+  ]
+}
