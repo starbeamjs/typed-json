@@ -12,8 +12,8 @@ importers:
         specifier: ^7.38.0
         version: 7.38.0
       '@starbeam-dev/compile':
-        specifier: ^1.0.1
-        version: 1.0.1(@swc/helpers@0.5.3)
+        specifier: ^1.0.2
+        version: 1.0.2(@swc/helpers@0.5.3)
       '@starbeam-dev/dev-mode':
         specifier: ^0.9.1
         version: 0.9.1
@@ -637,8 +637,8 @@ packages:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
     dev: false
 
-  /@rollup/plugin-commonjs@25.0.5(rollup@4.1.4):
-    resolution: {integrity: sha512-xY8r/A9oisSeSuLCTfhssyDjo9Vp/eDiRLXkg1MXCcEEgEjPmLU+ZyDB20OOD0NlyDa/8SGbK5uIggF5XTx77w==}
+  /@rollup/plugin-commonjs@25.0.7(rollup@4.1.4):
+    resolution: {integrity: sha512-nEvcR+LRjEjsaSsc4x3XZfCCvZIaSMenZu/OiwOKGN2UhQpAYI7ru7czFvyWbErlpoGjnSX3D5Ch5FcMA3kRWQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0||^4.0.0
@@ -651,7 +651,7 @@ packages:
       estree-walker: 2.0.2
       glob: 8.1.0
       is-reference: 1.2.1
-      magic-string: 0.27.0
+      magic-string: 0.30.5
       rollup: 4.1.4
     dev: true
 
@@ -831,12 +831,12 @@ packages:
       p-map: 4.0.0
     dev: true
 
-  /@starbeam-dev/compile@1.0.1(@swc/helpers@0.5.3):
-    resolution: {integrity: sha512-mbFCRS1SJr0Kg/UFrG61PvwI7mh3bWutX8RLoyH1uXrufm5IZuD30ACkZBJPOPPgP1YvFOXpafWQYF+6lJfbMQ==}
+  /@starbeam-dev/compile@1.0.2(@swc/helpers@0.5.3):
+    resolution: {integrity: sha512-99E86sTqaNxokPIEoNfgx8MbdTouHUUOM6zNmTo16FfSQY07tej8jZlRttqOOy6pjn0ike61BfD8LZLdm1/dOw==}
     dependencies:
-      '@rollup/plugin-commonjs': 25.0.5(rollup@4.1.4)
+      '@rollup/plugin-commonjs': 25.0.7(rollup@4.1.4)
       '@rollup/plugin-node-resolve': 15.2.3(rollup@4.1.4)
-      '@starbeam-dev/core': 1.0.1
+      '@starbeam-dev/core': 1.0.2
       '@swc/core': 1.3.93(@swc/helpers@0.5.3)
       get-tsconfig: 4.7.2
       magic-string: 0.30.5
@@ -852,8 +852,8 @@ packages:
       - '@swc/helpers'
     dev: true
 
-  /@starbeam-dev/core@1.0.1:
-    resolution: {integrity: sha512-0mUu6Y+kwlGPDXgxndPgo4DbbLbhIeJKJbMbbZvvpsI3Ef5xf0Y6rKSnk4KE73u+dXGe7s7opb8XL9LQLsLeSw==}
+  /@starbeam-dev/core@1.0.2:
+    resolution: {integrity: sha512-gYY9jg8Qzr5t+VBzKsCiJ0qZ8H9v3p8cht4ipN7EW4STOEQezChFmbgfPpq2r4s8ZaKykrbIBLdMn/pNfmoRaQ==}
     dev: true
 
   /@starbeam-dev/dev-mode@0.9.1:
@@ -3418,13 +3418,6 @@ packages:
     resolution: {integrity: sha512-c4BEos3y6G2qO0B9X7K0FVLOPT9uGrjYwYRLFmDqyl5YMboUviyecnXWp94fJTSMwPw2/sf+CEYt5AGpmklkkQ==}
     dependencies:
       vlq: 0.2.3
-    dev: true
-
-  /magic-string@0.27.0:
-    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   /magic-string@0.30.5:
