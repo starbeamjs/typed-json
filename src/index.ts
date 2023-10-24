@@ -99,18 +99,6 @@ export type PrimitiveClass =
   | typeof Number
   | null;
 
-export interface Hello {
-  primitive: PrimitiveClass;
-}
-
-export declare class World {
-  static primitive: PrimitiveClass;
-
-  constructor(primitive: PrimitiveClass);
-
-  toPrimitive(): PrimitiveClass;
-}
-
 /**
  * Get the {@link PrimitiveClass} for a given subtype of {@link JsonValue}.
  *
@@ -187,7 +175,7 @@ export function isPrimitive<J extends PrimitiveClass | undefined = undefined>(
  *
  * @remarks
  * You can pass `String`, `Boolean`, or `Number` as the
- * {@link !isPrimitive:PRIMARY | `primitiveType`} parameter.
+ * `primitiveType` parameter.
  *
  * The overloads to `isPrimitive` help you {@link !isPrimitive:NARROW | narrow}
  * the type of a `value`. They also cause `isPrimitive` to
