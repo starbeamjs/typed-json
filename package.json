@@ -27,9 +27,9 @@
     "test:types": "dev-tests typecheck"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^8.0.0",
+    "@microsoft/api-extractor": "^7.38.0",
     "@starbeam-dev/compile": "^1.0.1",
-    "@starbeam-dev/dev-mode": "^0.9.0",
+    "@starbeam-dev/dev-mode": "^0.9.1",
     "@starbeam-dev/eslint-plugin": "^1.0.4",
     "@starbeam-dev/typedoc-theme": "^1.0.1",
     "@swc/helpers": "^0.5.3",
