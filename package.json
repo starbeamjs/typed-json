@@ -18,6 +18,9 @@
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "ci:lint": "eslint . --max-warnings 0",
     "ci:specs": "dev-tests --run",
