@@ -1,7 +1,7 @@
 {
   "name": "@typed-utils/json",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utilities for working with JSON values in a typesafe way",
   "license": "MIT",
   "main": "src/index.ts",
